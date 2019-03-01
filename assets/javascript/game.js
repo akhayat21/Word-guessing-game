@@ -4,9 +4,9 @@ var usedL = [];
 var wordsRan;
 var words = ["james harden", "boston celtics", "chicago bulls","la lakers","golden state warriors","toronto raptors", "houston rockets", "oklahoma city thunder", "san antonio spurs", "milwaukee bucks", "new york knicks",
 "cleaveland cavaliers", "sacramento kings", "miami heat", "dallas mavericks", "denver nuggets", "utah jazz", "los angeles clippers", "new orlean pelicans", "portland trailblazers", "brooklyn nets","detriot pistons","minnesota timberwolves", 
-"indiana pacers", "phoenix suns", " charlotte hornets", "orlando magic", "memphis grizzlies", "atlanta hawks", "washington wizards", "lebron james", "michael jordon", "steph curry", "kevin durant", "kyrie irving","hakeem olajuwon", "shaquille o neal", "kobe byrant","magic johnson", ""];
+"indiana pacers", "phoenix suns", " charlotte hornets", "orlando magic", "memphis grizzlies", "atlanta hawks", "washington wizards", "lebron james", "michael jordon", "steph curry", "kevin durant", "kyrie irving","hakeem olajuwon", "shaquille o neal", "kobe byrant","magic johnson"];
 var word = [];
-word.join("");
+word.join(" ");
 var wordC = [];
 var loc = [];
 var guesses = 10;
@@ -42,6 +42,7 @@ function main() {
         if (winCheck() == 1) {
             wins++;
             document.getElementById("wins").textContent = wins;
+            audio();
             document.getElementById("start").textContent = "Congratulations, press any key to get start again";
             document.onkeypress = function(){ begin() }
         } else {
@@ -240,11 +241,19 @@ function alphaB() {
 
 //function to randomly choose the background image
 function bgRan(){
-    var image = ["nba_1","nba_2"];
+    var image = ["nba_1","nba_2","nba_3","nba_4","nba_5"];
     var ran = (Math.floor(Math.random() * image.length));;
-    console.log(ran);
+    //console.log(ran);
     $("body").css("background-image", "url('./assets/images/"+image[ran]+".jpg')");
     $("body").css("background-size", "cover;");
-    // $("body").css("", "");
+    
 
 }   
+
+
+//function to play audio on win
+function audio(){
+    console.log("test"); 
+    var audio = new Audio('./assets/sound/buzzer_beater.mp3');
+    audio.play();
+}
