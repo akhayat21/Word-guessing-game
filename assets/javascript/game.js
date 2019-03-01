@@ -246,6 +246,7 @@ function bgRan(){
     //console.log(ran);
     $("body").css("background-image", "url('./assets/images/"+image[ran]+".jpg')");
     $("body").css("background-size", "cover;");
+    $("body").css("background-position","center");
     
 
 }   
