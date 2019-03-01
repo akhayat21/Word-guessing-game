@@ -6,19 +6,26 @@ var words = ["james harden", "boston celtics", "chicago bulls","la lakers","gold
 "cleaveland cavaliers", "sacramento kings", "miami heat", "dallas mavericks", "denver nuggets", "utah jazz", "los angeles clippers", "new orlean pelicans", "portland trailblazers", "brooklyn nets","detriot pistons","minnesota timberwolves", 
 "indiana pacers", "phoenix suns", " charlotte hornets", "orlando magic", "memphis grizzlies", "atlanta hawks", "washington wizards", "lebron james", "michael jordon", "steph curry", "kevin durant", "kyrie irving","hakeem olajuwon", "shaquille o neal", "kobe byrant","magic johnson", ""];
 var word = [];
+word.join("");
 var wordC = [];
 var loc = [];
-var guesses = 13;
+var guesses = 10;
 var tempCounter = 0;
 var winCounter = 0;
 var AlphaB = [];
 
 
+window.onload = function() {
+    bgRan();
+  };
+
+document.getElementById("start").textContent = "Press any key to get started";
 
 // starts the main function when any button is pressed
-document.onkeypress = function () { start() }
+document.onkeypress = function start() { 
+    begin() 
 
-
+}
 
 
 
@@ -35,7 +42,8 @@ function main() {
         if (winCheck() == 1) {
             wins++;
             document.getElementById("wins").textContent = wins;
-            start();
+            document.getElementById("start").textContent = "Congratulations, press any key to get start again";
+            document.onkeypress = function(){ begin() }
         } else {
         }
     } else { }
@@ -44,7 +52,9 @@ function main() {
 
 
 // setup function that starts the game when pressing a random key
-function start() {
+function begin() {
+    //resets the press any key to start header
+    document.getElementById("start").textContent = "Guess the right word!";
     //generates array for alphabet
     alphaB();
     //reset all previous variables
@@ -55,7 +65,7 @@ function start() {
     document.getElementById("mys-word").textContent = word;
     usedL = [];
     document.getElementById("usedL").textContent = usedL;
-    guesses = 13;
+    guesses = 10;
     document.getElementById("guesses").textContent = guesses;
     document.getElementById("wins").textContent = wins;
 
@@ -84,12 +94,12 @@ function start() {
             word.push("_")
         }
 
-
         // more testing logs
         //console.log(word)
         //console.log(words[wordsRan])
 
     }
+    
     document.getElementById("mys-word").textContent = word;
 
 
@@ -108,7 +118,7 @@ function start() {
 // also uses logic to dictate whether a key has already been pressed and if the user
 // is running out of guesses
 function keyMatch(guess) {
-    //checks if key guessed was a spacebar and does nothing if it was *is unessicary because implimented logic on line 28*
+    //checks if key guessed was a spacebar and does nothing if it was *is unessicary because implimented logic on line 31*
     if (guess == " ") {
 
 
@@ -154,7 +164,9 @@ function keyMatch(guess) {
         document.getElementById("guesses").textContent = guesses;
         usedL.push(guess);
         document.getElementById("usedL").textContent = usedL;
-        start();
+        document.getElementById("mys-word").textContent = wordC;
+        document.getElementById("start").textContent = "Better luck next time, press any key to get started"
+        document.onkeypress = function(){ begin() };
     }
     // all other conditions left are if the user guessed the letter already
     else {
@@ -224,3 +236,15 @@ function alphaB() {
     }
     console.log(AlphaB);
 }
+
+
+//function to randomly choose the background image
+function bgRan(){
+    var image = ["nba_1","nba_2"];
+    var ran = (Math.floor(Math.random() * image.length));;
+    console.log(ran);
+    $("body").css("background-image", "url('./assets/images/"+image[ran]+".jpg')");
+    $("body").css("background-size", "cover;");
+    // $("body").css("", "");
+
+}   
